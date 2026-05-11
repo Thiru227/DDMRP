@@ -228,7 +228,7 @@ def init_db():
 # ── Flask app ────────────────────────────────────────────────────────────────
 
 app = Flask(__name__, template_folder="app/templates")
-app.secret_key = os.environ.get("SECRET_KEY", "ddmrp-demo-secret-2024")
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", os.environ.get("SECRET_KEY", "ddmrp-demo-secret-2024"))
 
 
 @app.teardown_appcontext
@@ -963,7 +963,12 @@ def list_order_recs():
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 
-init_db()
+# Initialize DB at startup — wrapped so gunicorn workers don't crash on import
+try:
+    init_db()
+except Exception as _e:
+    import sys
+    print(f"[WARN] init_db failed: {_e}", file=sys.stderr)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5001))
