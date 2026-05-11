@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Upload History{% endblock %}
+{% block content %}
+<section class="page">
+  <h1>Upload History</h1>
+  <div class="card">
+    <table id="history-table">
+      <thead><tr>
+        <th>File</th><th>Format</th><th>Status</th><th>Total</th><th>Valid</th><th>Invalid</th>
+        <th>Uploaded</th><th>Committed</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/history.js') }}"></script>{% endblock %}

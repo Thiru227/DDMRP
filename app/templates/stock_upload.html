@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Stock Upload{% endblock %}
+{% block content %}
+<section class="page">
+  <h1>Stock Upload</h1>
+
+  <div class="card">
+    <div class="dropzone" id="dropzone">
+      <p>Drag &amp; drop CSV here, or</p>
+      <input type="file" id="file-input" accept=".csv,.xlsx,.xls">
+      <p class="hint">Legacy MSK working-file CSV format is supported.</p>
+    </div>
+    <div id="upload-status" class="status-line"></div>
+  </div>
+
+  <div class="card" id="preview-card" hidden>
+    <h2>Preview</h2>
+    <div class="preview-summary">
+      <span><strong id="preview-total">0</strong> total rows</span>
+      <span><strong id="preview-valid" class="ok">0</strong> valid</span>
+      <span><strong id="preview-warnings" class="warn">0</strong> warnings</span>
+    </div>
+    <div class="table-scroll">
+      <table id="preview-table">
+        <thead><tr>
+          <th>MSKU</th><th>Branch</th><th>OH</th><th>OO</th><th>QD</th>
+          <th>90d Sales</th><th>ADU days</th><th>MOQ</th><th>DLT</th><th>LTF</th><th>VF</th><th>DOC</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="actions">
+      <button id="commit-btn" class="primary">Commit Import</button>
+      <button id="cancel-btn">Cancel</button>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/upload.js') }}"></script>{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Alerts{% endblock %}
+{% block content %}
+<section class="page">
+  <header class="page-head">
+    <h1>Alerts</h1>
+    <div class="filters">
+      <select id="filter-severity">
+        <option value="">All severities</option>
+        <option value="red">Red</option>
+        <option value="yellow">Yellow</option>
+      </select>
+      <select id="filter-branch"><option value="">All branches</option></select>
+      <button id="refresh-now">Refresh</button>
+    </div>
+  </header>
+
+  <div class="kpis">
+    <div class="kpi red"><div class="label">Red</div><div class="value" data-count="red">–</div></div>
+    <div class="kpi yellow"><div class="label">Yellow</div><div class="value" data-count="yellow">–</div></div>
+  </div>
+
+  <div class="card">
+    <div class="table-scroll">
+      <table id="alerts-table">
+        <thead><tr>
+          <th>MSKU</th><th>Branch</th><th>Severity</th>
+          <th>Net Flow</th><th>Red</th><th>TOY</th><th>TOG</th>
+          <th>Order Rec.</th><th>Priority</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/alerts.js') }}"></script>{% endblock %}

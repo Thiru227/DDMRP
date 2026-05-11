@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Planning{% endblock %}
+{% block content %}
+<section class="page">
+  <header class="page-head">
+    <h1>Planning Table</h1>
+    <div class="filters">
+      <input id="filter-search" placeholder="Search MSKU…">
+      <select id="filter-branch"><option value="">All branches</option></select>
+      <select id="filter-alert">
+        <option value="">All alerts</option>
+        <option value="red">Red</option>
+        <option value="yellow">Yellow</option>
+        <option value="healthy">Healthy</option>
+      </select>
+      <button id="refresh-now">Refresh</button>
+    </div>
+  </header>
+
+  <div class="card">
+    <div class="table-scroll">
+      <table id="planning-table">
+        <thead><tr>
+          <th>MSKU</th><th>Branch</th><th>Alert</th>
+          <th>OH</th><th>OO</th><th>QD</th>
+          <th>ADU</th><th>Red</th><th>Yellow</th><th>Green</th><th>TOG</th>
+          <th>Net Flow</th><th>Priority</th><th>Order Rec.</th>
+          <th>MOQ</th><th>DLT</th><th>LTF</th><th>VF</th><th>DOC</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="hint">Tip: edit OH / OO / QD / MOQ / DLT / LTF / VF / DOC inline — values recompute on save.</div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/planning.js') }}"></script>{% endblock %}
