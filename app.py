@@ -9,7 +9,7 @@ from functools import wraps
 
 from flask import Flask, g, jsonify, render_template, request, session
 
-DB = "ddmrp_v2.db"
+DB = os.environ.get("DB_PATH", "ddmrp_v2.db")
 
 import math
 
@@ -963,6 +963,8 @@ def list_order_recs():
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 
+init_db()
+
 if __name__ == "__main__":
-    init_db()
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host="0.0.0.0", port=port, debug=os.environ.get("FLASK_DEBUG", "0") == "1")
